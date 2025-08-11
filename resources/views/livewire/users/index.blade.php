@@ -11,4 +11,13 @@
     @else
         <p>No users found.</p>
     @endif
+
+    @if ($currentUser)
+        <p>Welcome back, {{ $currentUser->name }}!</p>
+        <a href="{{ route('logout') }}" class="text-blue-600 hover:underline">Logout</a>
+    @endif
+
+    @if ($currentUser && $currentUser->id === 1)
+        <a href="{{ route('users.create') }}" class="text-blue-600 hover:underline">Create User</a>
+    @endif
 </div>

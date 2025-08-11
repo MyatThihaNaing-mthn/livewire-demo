@@ -17,7 +17,7 @@ class Index extends Component
 
     public function mount(){
         $this->users = User::whereHas('role', function ($query) {
-            $query->where('name', Role::ROLE_USER);
+            $query->where('name', '!=', Role::ROLE_ADMIN);
         })->get();
         $this->currentUser = auth()->user();
     }

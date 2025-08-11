@@ -5,19 +5,16 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Users\Index;
 use App\Livewire\Users\Create;
 use App\Livewire\Auth\Login;
+use App\Livewire\Auth\Logout;
 
-Route::get('/', function () { return view('welcome'); });
+Route::get('/', Index::class)->name('home');
 
 Route::get('/login', Login::class)->name ('login');
+Route::get('/logout', Logout::class)->name('logout');
 
-Route::get('/users', Index::class);
-Route::get('/users/create', Create::class);
-
-
-Route::get('/test-cache', function () {
-    $user = Auth::user();
-    if (!$user) return 'Not logged in';
-
-    $permissions = Cache::get("user_permissions_{$user->id}");
-    return response()->json($permissions);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/users/create', Create::class)->name('users.create');
 });
+
+
+

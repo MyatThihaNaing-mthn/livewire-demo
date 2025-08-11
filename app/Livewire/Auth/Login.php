@@ -10,11 +10,17 @@ class Login extends Component
 {
     public $email;
     public $password;
+    public $currentUser;
 
     public function mount()
     {
         $this->email = '';
         $this->password = '';
+
+        $currentUser = Auth::user();
+        if ($currentUser) {
+            return redirect()->route('home')->with('message', 'You are already logged in.');
+        }
     }
 
     public function login()
@@ -27,7 +33,7 @@ class Login extends Component
         if(Auth::attempt($validated)) {
             request()->session()->regenerate();
             session()->flash('message', 'Login successful.');
-            return redirect()->intended("/users");
+            return redirect()->route('home');
         }
         
         $this->reset(['password']);
