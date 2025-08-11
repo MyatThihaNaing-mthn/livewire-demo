@@ -13,7 +13,7 @@ This project is a Laravel application using Livewire for user management.
 
 1. **Clone the repository**
    ```sh
-   git clone <your-repo-url>
+   git clone https://github.com/MyatThihaNaing-mthn/livewire-demo.git
    cd livewire-demo
    ```
 
