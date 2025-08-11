@@ -2,11 +2,23 @@
 
 This project is a Laravel application using Livewire for user management.
 
+## Introduction
+
+This project has three user roles which are admin, user and guest and one feature, 'blog'.
+
+- Admin has all permissions by default
+- User has read access to 'Blog' feature
+- Guest has only access to root app index
+
+
+
 ## Requirements
 
 - PHP >= 8.2
 - Composer
 - Node.js & npm
+- livewire
+- nwidart
 - MySQL or other supported database
 
 ## Setup Instructions
