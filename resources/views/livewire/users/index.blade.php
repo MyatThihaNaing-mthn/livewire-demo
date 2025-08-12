@@ -1,6 +1,5 @@
 <div>
-    <h1>{{ $message }}</h1>
-    <h2>Users List</h2>
+    <h1 class=" text-xl font-bold mb-4">Users List</h1>
     <h3>Current User: {{ $currentUser ? $currentUser->name : 'Guest' }}</h3>
     @if (sizeof($users) > 0)
         <ul>

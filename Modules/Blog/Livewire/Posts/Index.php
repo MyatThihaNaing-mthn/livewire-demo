@@ -6,6 +6,7 @@ use Livewire\Component;
 use Modules\Blog\Entities\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use App\Helpers\PermissionChecker;
 
 class Index extends Component
 {
@@ -29,13 +30,11 @@ class Index extends Component
             return;
         }
 
+        // Check permission if the user is not admin
         if (!$this->isAdmin) {
-            $permissions = Cache::get("user_permissions_{$this->userId}", []);
-            $blogPermissions = array_filter($permissions, function ($permission) {
-                return str_starts_with($permission, 'Blog.');
-            });
-
-            if (!in_array('Blog.view', $blogPermissions)) {
+            
+            // TODO: To replace magic strings with proper constants
+            if(!PermissionChecker::hasPermissionOnFeature($this->userId, 'view', 'Blog')) {
                 $this->redirect(route('login'));
                 return;
             }
