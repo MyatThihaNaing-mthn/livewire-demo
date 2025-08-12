@@ -57,7 +57,7 @@ class Create extends Component
                 'name' => $this->username,
                 'email' => $this->email,
                 'password' => bcrypt($this->password),
-                'role_id' => 1, // Default to admin role for simplicity
+                'role_id' => $this->roleId, 
             ]
             );
 
@@ -65,7 +65,7 @@ class Create extends Component
 
         session()->flash('message', 'User created successfully.');
         $this->reset(['username', 'email', 'password', 'roleId']);
-        //return $this->redirect('/users');
+        return $this->redirect('/');
     }
 
     public function updated($property)
